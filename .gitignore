@@ -1,0 +1,14 @@
+tsaGaming/.vs/
+tsaGaming/ApiGateways/Web.Bff.AdminPortal.Ocelot/bin/
+tsaGaming/ApiGateways/Web.Bff.AdminPortal.Ocelot/obj/
+tsaGaming/ApiGateways/Web.Bff.AdminPortal/bin/
+tsaGaming/ApiGateways/Web.Bff.AdminPortal/obj/
+tsaGaming/Services/Catalog/Catalog.API/bin/
+tsaGaming/Services/Catalog/Catalog.API/obj/
+tsaGaming/Services/Catalog/Catalog.Domain/bin/
+tsaGaming/Services/Catalog/Catalog.Domain/obj/
+tsaGaming/Services/Catalog/Catalog.Infrastructure/bin/
+tsaGaming/Services/Catalog/Catalog.Infrastructure/obj/
+tsaGaming/Services/Common/Services.Common/bin/
+tsaGaming/Services/Common/Services.Common/obj/
+tsaGaming/Services/Catalog/Catalog.API/.config/
