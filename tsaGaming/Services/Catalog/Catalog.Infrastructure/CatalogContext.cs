@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 using System.Data;
 using Catalog.Infrastructure.EntityConfigurations;
 using MediatR;
+using Catalog.Domain.Entites;
 
 namespace Catalog.Infrastructure;
 
@@ -27,12 +28,28 @@ public class CatalogContext : DbContext, IUnitOfWork
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new ProductEntityTypeConfiguration());
+        modelBuilder.ApplyConfiguration(new CourseEntityTypeConfiguration());
+        modelBuilder.ApplyConfiguration(new LessonEntityTypeConfiguration());
+        modelBuilder.ApplyConfiguration(new GameEntityTypeConfiguration());
     }
 
     public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)
     {
         // After executing this line all the changes (from the Command Handler and Domain Event Handlers) 
         // performed through the DbContext will be committed
+
+        var entries = ChangeTracker.Entries().Where(e => e.Entity is BaseEntity && (e.State == EntityState.Added || e.State == EntityState.Modified));
+
+        foreach (var entityEntry in entries)
+        {
+            ((BaseEntity)entityEntry.Entity).UpdatedAt = DateTimeOffset.Now;
+
+            if (entityEntry.State == EntityState.Added)
+            {
+                ((BaseEntity)entityEntry.Entity).CreatedAt= DateTimeOffset.Now;
+            }
+        }
+
         _ = await base.SaveChangesAsync(cancellationToken);
 
         return true;

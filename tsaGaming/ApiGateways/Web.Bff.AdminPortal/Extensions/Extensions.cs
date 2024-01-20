@@ -14,7 +14,7 @@ internal static class Extensions
     public static IServiceCollection AddHealthChecks(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddHealthChecks()
-            .AddUrlGroup(_ => new Uri(configuration.GetRequiredValue("ProductUrlHC")), name: "productapi-check", tags: new string[] { "productapi" });
+            .AddUrlGroup(_ => new Uri(configuration.GetRequiredValue("CatalogUrlHC")), name: "catalogservice-check", tags: new string[] { "catalogservice" });
             
 
         return services;

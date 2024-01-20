@@ -1,6 +1,6 @@
 ﻿namespace Catalog.Domain.Entites
 {
-    public abstract class Entity
+    public abstract class BaseEntity
     {
         int? _requestedHashCode;
         int _Id;
@@ -33,5 +33,7 @@
                 return base.GetHashCode();
 
         }
+        public DateTimeOffset CreatedAt { get; set; }
+        public DateTimeOffset UpdatedAt { get; set; }
     }
 }
