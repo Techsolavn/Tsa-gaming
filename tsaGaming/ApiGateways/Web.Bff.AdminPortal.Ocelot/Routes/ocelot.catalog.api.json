@@ -1,8 +1,8 @@
 {
   "Routes": [
     {
-      "SwaggerKey": "product",
-      "UpstreamPathTemplate": "/product/{everything}",
+      "SwaggerKey": "catalog",
+      "UpstreamPathTemplate": "/catalog-svc/{everything}",
       "UpstreamHttpMethod": [ "Put", "Delete", "Get", "Post" ],
       "DownstreamPathTemplate": "/{everything}",
       "DownstreamScheme": "https",
