@@ -33,6 +33,7 @@ services.AddMediatR(cfg =>
 // Register the command validators for the validator behavior (validators based on FluentValidation library)
 services.AddSingleton<IValidator<CreateProductCommand>, CreateProductCommandValidator>();
 services.AddScoped<IProductRepository, ProductRepository>();
+services.AddScoped<ICourseRepository, CourseRepository>();
 var app = builder.Build();
 
 app.UseServiceDefaults();
