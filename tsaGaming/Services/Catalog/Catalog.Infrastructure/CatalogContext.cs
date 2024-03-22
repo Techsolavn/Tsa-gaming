@@ -12,6 +12,7 @@ public class CatalogContext : DbContext, IUnitOfWork
 {
     public const string DEFAULT_SCHEMA = "cat";
     public DbSet<Catalog.Domain.Entites.Product> Products { get; set; }
+    public DbSet<Catalog.Domain.Entites.Course> Courses { get; set; }
 
     private IDbContextTransaction? _currentTransaction;
     public IDbContextTransaction? GetCurrentTransaction() => _currentTransaction;
