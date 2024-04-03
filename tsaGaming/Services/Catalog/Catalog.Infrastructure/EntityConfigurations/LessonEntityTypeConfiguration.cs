@@ -6,29 +6,29 @@ namespace Catalog.Infrastructure.EntityConfigurations
 {
     class LessonEntityTypeConfiguration : IEntityTypeConfiguration<Catalog.Domain.Entites.Lesson>
     {
-        public void Configure(EntityTypeBuilder<Catalog.Domain.Entites.Lesson> courseConfiguration)
+        public void Configure(EntityTypeBuilder<Catalog.Domain.Entites.Lesson> lessonConfiguration)
         {
-            courseConfiguration.ToTable("Lesson", CatalogContext.DEFAULT_SCHEMA);
+            lessonConfiguration.ToTable("Lesson", CatalogContext.DEFAULT_SCHEMA);
 
-            courseConfiguration.HasKey(o => o.Id);
+            lessonConfiguration.HasKey(o => o.Id);
 
-            courseConfiguration.Property(o => o.Id).UseHiLo("lessonseq", CatalogContext.DEFAULT_SCHEMA);
+            lessonConfiguration.Property(o => o.Id).UseHiLo("lessonseq", CatalogContext.DEFAULT_SCHEMA);
 
-            courseConfiguration.Property(x => x.CreatedAt).IsRequired();
+            lessonConfiguration.Property(x => x.CreatedAt).IsRequired();
 
-            courseConfiguration.Property(x => x.UpdatedAt).IsRequired();
+            lessonConfiguration.Property(x => x.UpdatedAt).IsRequired();
 
-            courseConfiguration.Property(x => x.Name).IsRequired();
+            lessonConfiguration.Property(x => x.Name).IsRequired();
 
-            courseConfiguration.Property(x => x.Description).IsRequired(false);
+            lessonConfiguration.Property(x => x.Description).IsRequired(false);
 
-            courseConfiguration.Property(x => x.CourseId).IsRequired();
+            lessonConfiguration.Property(x => x.CatalogId).IsRequired();
 
-            courseConfiguration.Property(x => x.IsActive).IsRequired();
+            lessonConfiguration.Property(x => x.IsActive).IsRequired();
 
-            courseConfiguration.Property(x => x.SortIndex).IsRequired();
+            lessonConfiguration.Property(x => x.SortIndex).IsRequired();
 
-            courseConfiguration.HasMany(x => x.Games).WithOne(x => x.Lesson).HasForeignKey(x => x.LessonId).HasPrincipalKey(x => x.Id);
+            lessonConfiguration.HasMany(x => x.Games).WithOne(x => x.Lesson).HasForeignKey(x => x.LessonId).HasPrincipalKey(x => x.Id);
         }
     }
 }

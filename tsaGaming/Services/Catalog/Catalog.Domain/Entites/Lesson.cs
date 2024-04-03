@@ -8,8 +8,8 @@ namespace Catalog.Domain.Entites
         public string? Description { get; set; }
         public bool IsActive{ get; set; }
         public int SortIndex { get; set; }
-        public int CourseId { get; set; }
-        public Course Course { get; set; }
+        public int CatalogId { get; set; }
+        public Catalog Catalog { get; set; }
         public IList<Game> Games { get; set; }
 
         public Lesson()

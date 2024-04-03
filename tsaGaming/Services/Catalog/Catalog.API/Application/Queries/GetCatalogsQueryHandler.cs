@@ -2,37 +2,37 @@
 
 namespace Catalog.API.Application.Queries
 {
-    public class GetCoursesQueryHandler : IRequestHandler<GetCoursesQuery, IList<CourseDTO>>
+    public class GetCatalogsQueryHandler : IRequestHandler<GetCatalogsQuery, IList<CatalogDTO>>
     {
-        private readonly ICourseRepository _courseRepository;
-        private readonly ILogger<GetCoursesQueryHandler> _logger;
+        private readonly ICatalogRepository _catalogRepository;
+        private readonly ILogger<GetCatalogsQueryHandler> _logger;
 
         // Using DI to inject infrastructure persistence Repositories
-        public GetCoursesQueryHandler(ICourseRepository courseRepository,
-            ILogger<GetCoursesQueryHandler> logger)
+        public GetCatalogsQueryHandler(ICatalogRepository catalogRepository,
+            ILogger<GetCatalogsQueryHandler> logger)
         {
-            _courseRepository = courseRepository ?? throw new ArgumentNullException(nameof(courseRepository));
+            _catalogRepository = catalogRepository ?? throw new ArgumentNullException(nameof(catalogRepository));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
-        public async Task<IList<CourseDTO>> Handle(GetCoursesQuery request, CancellationToken cancellationToken)
+        public async Task<IList<CatalogDTO>> Handle(GetCatalogsQuery request, CancellationToken cancellationToken)
         {
-            var courses = await _courseRepository.GetAllAsync();
-            _logger.LogInformation("Querying product - Product: {@result}", courses);
+            var catalogs = await _catalogRepository.GetAllAsync(request.Page, request.ItemPerPage);
+            _logger.LogInformation("Querying product - Product: {@result}", catalogs);
 
-            var result = new List<CourseDTO>();
-            if (courses == null) return result;
-            foreach (var course in courses)
+            var result = new List<CatalogDTO>();
+            if (catalogs == null) return result;
+            foreach (var catalog in catalogs)
             {
-                result.Add(new CourseDTO
+                result.Add(new CatalogDTO
                 {
-                    Id = course.Id,
-                    Name = course.Name,
-                    DisplayName = course.DisplayName,
-                    ImageUrl = course.ImageUrl,
-                    IsActive = course.IsActive,
-                    IsTop = course.IsTop,
-                    SortIndex = course.SortIndex,
-                    Lessons = course.Lessons.Select(lesson => 
+                    Id = catalog.Id,
+                    Name = catalog.Name,
+                    DisplayName = catalog.DisplayName,
+                    ImageUrl = catalog.ImageUrl,
+                    IsActive = catalog.IsActive,
+                    IsTop = catalog.IsTop,
+                    SortIndex = catalog.SortIndex,
+                    Lessons = catalog.Lessons.Select(lesson => 
                         new LessonDTO {
                             Name = lesson.Name,
                             IsActive= lesson.IsActive,
@@ -50,7 +50,7 @@ namespace Catalog.API.Application.Queries
             return result;
         }
     }
-    public record CourseDTO
+    public record CatalogDTO
     {
         public int Id { get; set; }
         public required string Name { get; set; }

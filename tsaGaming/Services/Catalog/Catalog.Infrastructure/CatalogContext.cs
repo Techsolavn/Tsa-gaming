@@ -12,7 +12,7 @@ public class CatalogContext : DbContext, IUnitOfWork
 {
     public const string DEFAULT_SCHEMA = "cat";
     public DbSet<Catalog.Domain.Entites.Product> Products { get; set; }
-    public DbSet<Catalog.Domain.Entites.Course> Courses { get; set; }
+    public DbSet<Catalog.Domain.Entites.Catalog> Catalogs { get; set; }
 
     private IDbContextTransaction? _currentTransaction;
     public IDbContextTransaction? GetCurrentTransaction() => _currentTransaction;
@@ -29,7 +29,7 @@ public class CatalogContext : DbContext, IUnitOfWork
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new ProductEntityTypeConfiguration());
-        modelBuilder.ApplyConfiguration(new CourseEntityTypeConfiguration());
+        modelBuilder.ApplyConfiguration(new CatalogEntityTypeConfiguration());
         modelBuilder.ApplyConfiguration(new LessonEntityTypeConfiguration());
         modelBuilder.ApplyConfiguration(new GameEntityTypeConfiguration());
 
@@ -38,8 +38,8 @@ public class CatalogContext : DbContext, IUnitOfWork
 
     private void SeedData(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Course>().HasData(
-            new Course()
+        modelBuilder.Entity<Domain.Entites.Catalog>().HasData(
+            new Domain.Entites.Catalog()
             {
                 Id = 1,
                 Name = "Easy Alphabet",
@@ -49,7 +49,7 @@ public class CatalogContext : DbContext, IUnitOfWork
                 IsTop = true,
                 SortIndex = 1
             },
-            new Course()
+            new Domain.Entites.Catalog()
             {
                 Id = 2,
                 Name = "Mathematical Thinking",
@@ -67,7 +67,7 @@ public class CatalogContext : DbContext, IUnitOfWork
                 Name = "A",
                 IsActive = true,
                 SortIndex = 1,
-                CourseId = 1,
+                CatalogId = 1,
             },
             new Lesson()
             {
@@ -75,7 +75,7 @@ public class CatalogContext : DbContext, IUnitOfWork
                 Name = "B",
                 IsActive = true,
                 SortIndex = 2, 
-                CourseId = 1,
+                CatalogId = 1,
             }
         );
 

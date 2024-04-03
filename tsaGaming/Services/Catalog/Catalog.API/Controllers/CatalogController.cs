@@ -4,20 +4,21 @@ using Microsoft.AspNetCore.Mvc;
 using Catalog.API.Application.Commands;
 using Catalog.API.Application.Queries;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using Services.Common.Dto;
 
 namespace Catalog.API.Controllers
 {
     [Route("api/v1/[controller]")]
     [AllowAnonymous]
     [ApiController]
-    public class CourseController : ControllerBase
+    public class CatalogController : ControllerBase
     {
 
         private readonly IMediator _mediator;
 
-        private readonly ILogger<CourseController> _logger;
+        private readonly ILogger<CatalogController> _logger;
 
-        public CourseController(ILogger<CourseController> logger, IMediator mediator)
+        public CatalogController(ILogger<CatalogController> logger, IMediator mediator)
         {
             _logger = logger;
             _mediator = mediator;
@@ -27,10 +28,10 @@ namespace Catalog.API.Controllers
         [HttpGet()]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<IList<CourseDTO>>> Get()
+        public async Task<ActionResult<IList<CatalogDTO>>> Get([FromQuery] GetCatalogsQuery getCatalogsQuery)
         {
-            _logger.LogInformation("course controller - get courses");
-            var result = await _mediator.Send(new GetCoursesQuery { });
+            _logger.LogInformation("catalog controller - get catalogs");
+            var result = await _mediator.Send(getCatalogsQuery);
             if (result == null) return NotFound();
             return Ok(result);
         }
