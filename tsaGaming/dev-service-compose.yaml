@@ -14,16 +14,14 @@ services:
     build:
       dockerfile: ./Services/Catalog/Catalog.API/Dockerfile
     ports:
-      - 80:80
-      - 443:443
+      - 44398:44398
     depends_on:
       - db
   gateway:
     build:
       dockerfile: ./ApiGateways/Web.Bff.Mobile/Dockerfile
     ports:
-      - 5048:5048
-      - 7117:7117
+      - 80:80
     depends_on:
       - be
 volumes:

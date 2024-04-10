@@ -7,6 +7,6 @@
         public static string GetAll() => $"/api/v1/catalog/";
     }
 
-    public required string Product { get; set; }
+    public required string Catalog { get; set; }
 }
 

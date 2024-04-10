@@ -21,7 +21,7 @@ namespace Web.Bff.Mobile.Services
         public async Task<IEnumerable<CatalogDTO>> GetAllAsync()
         {
             _logger.LogDebug("HttpClient-Catalog-GetAllAsync created");
-            var url = $"{_urls.Product}{UrlsConfig.CatalogOperations.GetAll()}";
+            var url = $"{_urls.Catalog}{UrlsConfig.CatalogOperations.GetAll()}";
             var response = await _apiClient.GetAsync(url);
             
             _logger.LogDebug("HttpClient-Catalog-GetAllAsync response: {@response}", response);
