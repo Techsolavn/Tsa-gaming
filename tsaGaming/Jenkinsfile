@@ -4,16 +4,16 @@ pipeline {
     environment {
         DOCKER_COMPOSE = 'docker-compose'
         GIT_URL = 'https://github.com/yourusername/yourrepository.git'
-        GIT_CREDENTIAL = credentials('git-credentials')
     }
     
     stages {
         stage('Get Latest Source Code') {
             steps {
                 script {
-                    def branchName = env.BRANCH_NAME ?: 'main'
-                    echo GIT_CREDENTIAL
-                    git branch: branchName, credentialsId: GIT_CREDENTIAL, url: GIT_URL
+                    withCredentials([usernameColonPassword(credentialsId: 'git-credentials', variable: 'GIT_CREDENTIAL')]) {
+                        def branchName = env.BRANCH_NAME ?: 'main'
+                        git branch: branchName, credentialsId: GIT_CREDENTIAL, url: GIT_URL
+                    }
                 }
             }
         }
