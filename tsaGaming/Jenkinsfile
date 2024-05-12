@@ -34,7 +34,7 @@ pipeline {
         }
         stage('Run NUnit') {
             steps {
-                nunit
+                nunit testResultsPattern: 'TestResult.xml'
             }
         }
         stage('Deploy') {
