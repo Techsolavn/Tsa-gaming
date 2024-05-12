@@ -1,0 +1,41 @@
+pipeline {
+    agent any
+    
+    environment {
+        DOCKER_COMPOSE = 'docker-compose'
+        GIT_URL = 'https://github.com/Techsolavn/Tsa-gaming.git'
+        GIT_CREDENTIAL = credentials('git-credentials')
+    }
+    
+    stages {
+        stage('Get Latest Source Code') {
+            steps {
+                script {
+                    def branchName = env.BRANCH_NAME ?: 'main'
+                    git branch: branchName, credentialsId: GIT_CREDENTIAL, url: GIT_URL
+                }
+            }
+        }
+        stage('Build .NET App') {
+            steps {
+                script {
+                    sh 'dotnet build tsaGaming.sln'
+                }
+            }
+        }
+        stage('Run NUnit') {
+            steps {
+                script {
+                    sh 'nunit-console tsaGaming.Tests.dll'
+                }
+            }
+        }
+        stage('Deploy') {
+            steps {
+                script {
+                    sh "${DOCKER_COMPOSE} up -d"
+                }
+            }
+        }
+    }
+}
