@@ -11,7 +11,9 @@ pipeline {
             steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'git-credentials')]) {
+                        echo 'here'
                         def branchName = env.BRANCH_NAME ?: 'main'
+                        echo branchName
                         git branch: branchName, credentialsId: 'git-credentials', url: GIT_URL
                     }
                 }
