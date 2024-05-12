@@ -35,13 +35,12 @@ pipeline {
         stage('Run NUnit') {
             steps {
                 bat "dotnet test tsaGaming\\tsaGaming.sln"
-                //nunit testResultsPattern: 'TestResult.xml'
             }
         }
         stage('Deploy') {
             steps {
                 script {
-                    sh "${DOCKER_COMPOSE} up -d"
+                    sh "${DOCKER_COMPOSE}  -f ./tsagaming/dev-service-compose.yaml up -d"
                 }
             }
         }
