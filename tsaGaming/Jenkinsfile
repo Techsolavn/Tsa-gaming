@@ -40,7 +40,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    sh "${DOCKER_COMPOSE} -f dev-service-compose.yaml up -d"
+                    bat "${DOCKER_COMPOSE} -f dev-service-compose.yaml up -d"
                 }
             }
         }
