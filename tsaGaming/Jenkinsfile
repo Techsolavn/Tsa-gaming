@@ -1,5 +1,5 @@
 pipeline {
-    agent { label "build && windows" }
+    agent { label "window-agent" }
     
     environment {
         DOCKER_COMPOSE = 'docker-compose'
@@ -24,12 +24,12 @@ pipeline {
         }
         stage('Restore packages') {
             steps {
-                //bat "dotnet restore ${workspace}\\tsaGaming.sln"
-                bat label: 'Nuget Restore', 
-                script: '''
-                  nuget restore "tsaGaming.sln"
-                  echo "Nuget Done Starting Msbuild *************"
-                ''' 
+                bat "dotnet restore tsaGaming\\tsaGaming.sln"
+                //bat label: 'Nuget Restore', 
+                //script: '''
+                //  nuget restore "tsaGaming.sln"
+                //  echo "Nuget Done Starting Msbuild *************"
+                //''' 
             }
         }
         stage('Run NUnit') {
