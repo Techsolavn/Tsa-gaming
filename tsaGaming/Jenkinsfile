@@ -34,7 +34,8 @@ pipeline {
         }
         stage('Run NUnit') {
             steps {
-                nunit testResultsPattern: 'TestResult.xml'
+                bat "dotnet test tsaGaming\\tsaGaming.sln"
+                //nunit testResultsPattern: 'TestResult.xml'
             }
         }
         stage('Deploy') {
