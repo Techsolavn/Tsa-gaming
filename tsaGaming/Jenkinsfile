@@ -24,7 +24,12 @@ pipeline {
         }
         stage('Restore packages') {
             steps {
-                bat "dotnet restore ${workspace}\\tsaGaming.sln"
+                //bat "dotnet restore ${workspace}\\tsaGaming.sln"
+                bat label: 'Nuget Restore', 
+                script: '''
+                  nuget restore "tsaGaming.sln"
+                  echo "Nuget Done Starting Msbuild *************"
+                ''' 
             }
         }
         stage('Run NUnit') {
