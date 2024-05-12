@@ -30,14 +30,11 @@ pipeline {
         stage('Build') {
             steps {
                 bat "dotnet build tsaGaming\\tsaGaming.sln"
-                //bat "msbuild.exe tsaGaming\\tsaGaming.sln /nologo /nr:false  /p:platform=\"x64\" /p:configuration=\"release\" /t:clean;restore;rebuild"
             }
         }
         stage('Run NUnit') {
             steps {
-                script {
-                    sh 'nunit-console tsaGaming.Tests.dll'
-                }
+                nunit testResultsPattern: 'TestResult.xml'
             }
         }
         stage('Deploy') {
