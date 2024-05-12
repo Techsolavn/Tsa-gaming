@@ -40,7 +40,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    bat "${DOCKER_COMPOSE} -f dev-service-compose.yaml up -d"
+                    bat "${DOCKER_COMPOSE} -f tsaGaming\\dev-service-compose.yaml up -d"
                 }
             }
         }
