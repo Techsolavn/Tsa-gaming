@@ -3,7 +3,7 @@ pipeline {
     
     environment {
         DOCKER_COMPOSE = 'docker-compose'
-        GIT_URL = 'https://github.com/yourusername/yourrepository.git'
+        GIT_URL = 'https://github.com/Techsolavn/Tsa-gaming.git'
     }
     
     stages {
