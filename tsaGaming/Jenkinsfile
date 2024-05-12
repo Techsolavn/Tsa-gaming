@@ -7,7 +7,12 @@ pipeline {
     }
     
     stages {
-        stage('Get Latest Source Code') {
+        stage ('Clean workspace') {
+              steps {
+                    cleanWs()
+              }
+        }
+        stage('Git Checkout') {
             steps {
                 script {
                     withCredentials([usernameColonPassword(credentialsId: 'git-credentials', variable: 'GIT_CREDENTIAL')]) {
@@ -17,11 +22,9 @@ pipeline {
                 }
             }
         }
-        stage('Build .NET App') {
+        stage('Restore packages') {
             steps {
-                script {
-                    sh 'dotnet build tsaGaming.sln'
-                }
+                bat "dotnet restore ${workspace}\\tsaGaming.sln"
             }
         }
         stage('Run NUnit') {
