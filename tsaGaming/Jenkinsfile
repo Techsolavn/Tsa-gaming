@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { label "build && windows" }
     
     environment {
         DOCKER_COMPOSE = 'docker-compose'
