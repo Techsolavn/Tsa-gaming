@@ -22,7 +22,7 @@ namespace Catalog.API.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.HasSequence("courseseq", "cat")
+            modelBuilder.HasSequence("catalogseq", "cat")
                 .IncrementsBy(10);
 
             modelBuilder.HasSequence("gameseq", "cat")
@@ -34,18 +34,26 @@ namespace Catalog.API.Migrations
             modelBuilder.HasSequence("productseq", "cat")
                 .IncrementsBy(10);
 
-            modelBuilder.Entity("Catalog.Domain.Entites.Course", b =>
+            modelBuilder.Entity("Catalog.Domain.Entites.Catalog", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseHiLo(b.Property<int>("Id"), "courseseq", "cat");
+                    SqlServerPropertyBuilderExtensions.UseHiLo(b.Property<int>("Id"), "catalogseq", "cat");
 
                     b.Property<DateTimeOffset>("CreatedAt")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DisplayName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
@@ -59,10 +67,10 @@ namespace Catalog.API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18, 2)");
 
                     b.Property<decimal>("PriceVAT")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18, 2)");
 
                     b.Property<int>("SortIndex")
                         .HasColumnType("int");
@@ -72,7 +80,37 @@ namespace Catalog.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Course", "cat");
+                    b.ToTable("Catalog", "cat");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            DisplayName = "Bé Học Chữ",
+                            ImageUrl = "https://monkeymedia.vcdn.com.vn/upload/web/img/01-Game-hoc-chu-cai-tieng-Viet.jpg",
+                            IsActive = true,
+                            IsTop = true,
+                            Name = "Easy Alphabet",
+                            Price = 0m,
+                            PriceVAT = 0m,
+                            SortIndex = 1,
+                            UpdatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            DisplayName = "Toán Thông Minh",
+                            ImageUrl = "https://play-lh.googleusercontent.com/I1YRhi1oTYrFf1ZCbs3Dbx7J3Kj_h5SXICD8ObajQ5NOuYFJLNGCa1a774AD_z7D9w=w526-h296-rw",
+                            IsActive = true,
+                            IsTop = false,
+                            Name = "Mathematical Thinking",
+                            Price = 0m,
+                            PriceVAT = 0m,
+                            SortIndex = 2,
+                            UpdatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
+                        });
                 });
 
             modelBuilder.Entity("Catalog.Domain.Entites.Game", b =>
@@ -113,6 +151,63 @@ namespace Catalog.API.Migrations
                     b.HasIndex("LessonId");
 
                     b.ToTable("Game", "cat");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            FrameRate = 0,
+                            IsActive = true,
+                            LessonId = 1,
+                            Name = "Bong Bóng",
+                            SortIndex = 1,
+                            UpdatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            FrameRate = 0,
+                            IsActive = true,
+                            LessonId = 1,
+                            Name = "Trúc Xanh",
+                            SortIndex = 2,
+                            UpdatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            FrameRate = 0,
+                            IsActive = true,
+                            LessonId = 1,
+                            Name = "Hái Táo",
+                            SortIndex = 3,
+                            UpdatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            FrameRate = 0,
+                            IsActive = true,
+                            LessonId = 1,
+                            Name = "Đuổi Hình Bắt Chữ",
+                            SortIndex = 4,
+                            UpdatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            FrameRate = 0,
+                            IsActive = true,
+                            LessonId = 1,
+                            Name = "Shopping",
+                            SortIndex = 5,
+                            UpdatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
+                        });
                 });
 
             modelBuilder.Entity("Catalog.Domain.Entites.Lesson", b =>
@@ -123,7 +218,7 @@ namespace Catalog.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseHiLo(b.Property<int>("Id"), "lessonseq", "cat");
 
-                    b.Property<int>("CourseId")
+                    b.Property<int>("CatalogId")
                         .HasColumnType("int");
 
                     b.Property<DateTimeOffset>("CreatedAt")
@@ -147,9 +242,31 @@ namespace Catalog.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CourseId");
+                    b.HasIndex("CatalogId");
 
                     b.ToTable("Lesson", "cat");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CatalogId = 1,
+                            CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            IsActive = true,
+                            Name = "A",
+                            SortIndex = 1,
+                            UpdatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CatalogId = 1,
+                            CreatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            IsActive = true,
+                            Name = "B",
+                            SortIndex = 2,
+                            UpdatedAt = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0))
+                        });
                 });
 
             modelBuilder.Entity("Catalog.Domain.Entites.Product", b =>
@@ -193,16 +310,16 @@ namespace Catalog.API.Migrations
 
             modelBuilder.Entity("Catalog.Domain.Entites.Lesson", b =>
                 {
-                    b.HasOne("Catalog.Domain.Entites.Course", "Course")
+                    b.HasOne("Catalog.Domain.Entites.Catalog", "Catalog")
                         .WithMany("Lessons")
-                        .HasForeignKey("CourseId")
+                        .HasForeignKey("CatalogId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Course");
+                    b.Navigation("Catalog");
                 });
 
-            modelBuilder.Entity("Catalog.Domain.Entites.Course", b =>
+            modelBuilder.Entity("Catalog.Domain.Entites.Catalog", b =>
                 {
                     b.Navigation("Lessons");
                 });

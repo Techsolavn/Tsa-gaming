@@ -6,29 +6,29 @@ namespace Catalog.Infrastructure.EntityConfigurations
 {
     class GameEntityTypeConfiguration : IEntityTypeConfiguration<Catalog.Domain.Entites.Game>
     {
-        public void Configure(EntityTypeBuilder<Catalog.Domain.Entites.Game> courseConfiguration)
+        public void Configure(EntityTypeBuilder<Catalog.Domain.Entites.Game> gameConfiguration)
         {
-            courseConfiguration.ToTable("Game", CatalogContext.DEFAULT_SCHEMA);
+            gameConfiguration.ToTable("Game", CatalogContext.DEFAULT_SCHEMA);
 
-            courseConfiguration.HasKey(o => o.Id);
+            gameConfiguration.HasKey(o => o.Id);
 
-            courseConfiguration.Property(o => o.Id).UseHiLo("gameseq", CatalogContext.DEFAULT_SCHEMA);
+            gameConfiguration.Property(o => o.Id).UseHiLo("gameseq", CatalogContext.DEFAULT_SCHEMA);
 
-            courseConfiguration.Property(x => x.CreatedAt).IsRequired();
+            gameConfiguration.Property(x => x.CreatedAt).IsRequired();
 
-            courseConfiguration.Property(x => x.UpdatedAt).IsRequired();
+            gameConfiguration.Property(x => x.UpdatedAt).IsRequired();
 
-            courseConfiguration.Property(x => x.Name).IsRequired();
+            gameConfiguration.Property(x => x.Name).IsRequired();
 
-            courseConfiguration.Property(x => x.Description).IsRequired(false);
+            gameConfiguration.Property(x => x.Description).IsRequired(false);
 
-            courseConfiguration.Property(x => x.LessonId).IsRequired();
+            gameConfiguration.Property(x => x.LessonId).IsRequired();
 
-            courseConfiguration.Property(x => x.FrameRate).IsRequired();
+            gameConfiguration.Property(x => x.FrameRate).IsRequired();
 
-            courseConfiguration.Property(x => x.IsActive).IsRequired();
+            gameConfiguration.Property(x => x.IsActive).IsRequired();
 
-            courseConfiguration.Property(x => x.SortIndex).IsRequired();
+            gameConfiguration.Property(x => x.SortIndex).IsRequired();
         }
     }
 }

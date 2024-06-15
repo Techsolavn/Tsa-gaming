@@ -1,0 +1,28 @@
+version: "1.0"
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    user: root
+    ports:
+      - 1433:1433
+    volumes:
+      - data:/var/opt/mssql/data
+    environment:
+      - MSSQL_SA_PASSWORD=1234567x@X
+      - ACCEPT_EULA=Y
+  be:
+    build:
+      dockerfile: ./Services/Catalog/Catalog.API/Dockerfile
+    ports:
+      - 44398:44398
+    depends_on:
+      - db
+  gateway:
+    build:
+      dockerfile: ./ApiGateways/Web.Bff.Mobile/Dockerfile
+    ports:
+      - 80:80
+    depends_on:
+      - be
+volumes:
+  data:

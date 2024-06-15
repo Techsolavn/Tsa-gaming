@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Web.Bff.Mobile.props" />
+</Project>

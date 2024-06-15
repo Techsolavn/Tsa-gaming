@@ -1,0 +1,189 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Projects\\game hoc chu\\Projects\\Online Learning\\source code\\BE\\tsaGaming\\ApiGateways\\Web.Bff.Mobile\\Web.Bff.Mobile.csproj": {}
+  },
+  "projects": {
+    "D:\\Projects\\game hoc chu\\Projects\\Online Learning\\source code\\BE\\tsaGaming\\ApiGateways\\Web.Bff.Mobile\\Web.Bff.Mobile.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projects\\game hoc chu\\Projects\\Online Learning\\source code\\BE\\tsaGaming\\ApiGateways\\Web.Bff.Mobile\\Web.Bff.Mobile.csproj",
+        "projectName": "Web.Bff.Mobile",
+        "projectPath": "D:\\Projects\\game hoc chu\\Projects\\Online Learning\\source code\\BE\\tsaGaming\\ApiGateways\\Web.Bff.Mobile\\Web.Bff.Mobile.csproj",
+        "packagesPath": "C:\\Users\\AcMaTeo\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\game hoc chu\\Projects\\Online Learning\\source code\\BE\\tsaGaming\\ApiGateways\\Web.Bff.Mobile\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\AcMaTeo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "D:\\Projects\\game hoc chu\\Projects\\Online Learning\\source code\\BE\\tsaGaming\\Services\\Common\\Services.Common\\Services.Common.csproj": {
+                "projectPath": "D:\\Projects\\game hoc chu\\Projects\\Online Learning\\source code\\BE\\tsaGaming\\Services\\Common\\Services.Common\\Services.Common.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "AspNetCore.HealthChecks.Uris": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[7.0.14, )"
+            },
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+              "target": "Package",
+              "version": "[1.19.4, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
+            "Yarp.ReverseProxy": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.407\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Projects\\game hoc chu\\Projects\\Online Learning\\source code\\BE\\tsaGaming\\Services\\Common\\Services.Common\\Services.Common.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projects\\game hoc chu\\Projects\\Online Learning\\source code\\BE\\tsaGaming\\Services\\Common\\Services.Common\\Services.Common.csproj",
+        "projectName": "Services.Common",
+        "projectPath": "D:\\Projects\\game hoc chu\\Projects\\Online Learning\\source code\\BE\\tsaGaming\\Services\\Common\\Services.Common\\Services.Common.csproj",
+        "packagesPath": "C:\\Users\\AcMaTeo\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\game hoc chu\\Projects\\Online Learning\\source code\\BE\\tsaGaming\\Services\\Common\\Services.Common\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\AcMaTeo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "AspNetCore.HealthChecks.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "AspNetCore.HealthChecks.UI.Client": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "IdentityModel.AspNetCore": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
+            "MMLib.SwaggerForOcelot": {
+              "target": "Package",
+              "version": "[8.1.0, )"
+            },
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[7.0.14, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.OpenApi.Readers": {
+              "target": "Package",
+              "version": "[1.6.11, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerGen": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
+            "Yarp.ReverseProxy": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.407\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+pipeline {
+    agent { label "window-agent" }
+    
+    environment {
+        DOCKER_COMPOSE = 'docker-compose'
+        GIT_URL = 'https://github.com/Techsolavn/Tsa-gaming.git'
+    }
+    
+    stages {
+        stage ('Clean workspace') {
+              steps {
+                    cleanWs()
+              }
+        }
+        stage('Git Checkout') {
+            steps {
+                script {
+                    withCredentials([usernameColonPassword(credentialsId: 'git-credentials', variable: 'GIT_CREDENTIAL')]) {
+                        def branchName = env.BRANCH_NAME ?: 'main'
+                        git branch: branchName, credentialsId: GIT_CREDENTIAL, url: GIT_URL
+                    }
+                }
+            }
+        }
+        stage('Restore packages') {
+            steps {
+                bat "dotnet restore tsaGaming\\tsaGaming.sln"
+            }
+        }
+        stage('Build') {
+            steps {
+                bat "dotnet build tsaGaming\\tsaGaming.sln"
+            }
+        }
+        stage('Run NUnit') {
+            steps {
+                bat "dotnet test tsaGaming\\tsaGaming.sln"
+            }
+        }
+        stage('Deploy') {
+            steps {
+                script {
+                    bat "${DOCKER_COMPOSE} -f tsaGaming\\dev-service-compose.yaml up -d"
+                }
+            }
+        }
+    }
+}
